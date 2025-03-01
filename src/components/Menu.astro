@@ -1,18 +1,21 @@
 ---
-import Customer from "./Customer.astro"
-import Overview from "./Overview.astro"
-import SideMenuItem from "./SideMenuItem.astro" 
-
+// src/components/SideMenu.astro
+import SideMenuItem from "./SideMenuItem.astro";
 ---
-<nav class="flex flex-col flex-1 gap-2">
+
+<nav class="flex flex-row gap-4"> <!-- Cambio aquí para una fila con espacio entre los ítems -->
   <div class="bg-zinc-900 rounded-lg p-2">
-    <ul>
-      <SideMenuItem href="../src/components/Customer.astro">
+    <ul class="flex flex-row gap-4"> <!-- Aquí estamos aplicando flex para alinearlos en fila -->
+      <SideMenuItem href="/Overview">
+        <span>Overview</span>
+      </SideMenuItem>
+
+      <SideMenuItem href="./Customer">
         <span>Customer</span>
       </SideMenuItem>
 
-      <SideMenuItem href=/Overview>
-        <span>Overview</span>
+      <SideMenuItem href="/Analytics">
+        <span>Analytics</span>
       </SideMenuItem>
     </ul>
   </div>
