@@ -1,47 +1,171 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Datos simulados para las métricas y el histograma
-const metrics = {
-  totalCustomers: 1248,
-  activeDeals: 324,
-  revenue: 45231.89,
-  customerSatisfaction: 92,
-  growth: {
-    totalCustomers: 12,
-    activeDeals: 4,
-    revenue: 20.1,
-    customerSatisfaction: 2,
-  },
+// Datos proporcionados
+const ventasData = {
+  ventas: [
+    {
+      año: 2020,
+      resumen_general: {
+        total_sales: 1200000,
+        clientes_activos: 85,
+        clientes_inactivos: 15,
+        venta_promedio: 1200,
+        ventas_por_cliente: 14117.65,
+        tasa_satisfaccion: 82,
+        tendencia_ventas_mensuales: {
+          enero: 80000,
+          febrero: 75000,
+          marzo: 90000,
+          abril: 85000,
+          mayo: 95000,
+          junio: 100000,
+          julio: 105000,
+          agosto: 100000,
+          septiembre: 110000,
+          octubre: 115000,
+          noviembre: 120000,
+          diciembre: 125000,
+        },
+      },
+      clientes_destacados: [
+        {
+          nombre: 'TechCorp Solutions',
+          total_gastado: 150000,
+          tasa_satisfaccion: 94,
+          ultima_compra: '2020-12-15',
+          vendedor_asignado: 'Carlos Martínez',
+        },
+      ],
+    },
+    {
+      año: 2021,
+      resumen_general: {
+        total_sales: 2500000,
+        clientes_activos: 150,
+        clientes_inactivos: 30,
+        venta_promedio: 1150,
+        ventas_por_cliente: 16666.67,
+        tasa_satisfaccion: 85,
+        tendencia_ventas_mensuales: {
+          enero: 180000,
+          febrero: 160000,
+          marzo: 190000,
+          abril: 175000,
+          mayo: 210000,
+          junio: 230000,
+          julio: 220000,
+          agosto: 240000,
+          septiembre: 250000,
+          octubre: 260000,
+          noviembre: 280000,
+          diciembre: 305000,
+        },
+      },
+      clientes_destacados: [
+        {
+          nombre: 'Innovatech Global',
+          total_gastado: 300000,
+          tasa_satisfaccion: 92,
+          ultima_compra: '2021-11-22',
+          vendedor_asignado: 'Laura Fernández',
+        },
+      ],
+    },
+    {
+      año: 2022,
+      resumen_general: {
+        total_sales: 4000000,
+        clientes_activos: 220,
+        clientes_inactivos: 45,
+        venta_promedio: 1100,
+        ventas_por_cliente: 18181.82,
+        tasa_satisfaccion: 88,
+        tendencia_ventas_mensuales: {
+          enero: 300000,
+          febrero: 290000,
+          marzo: 320000,
+          abril: 310000,
+          mayo: 340000,
+          junio: 360000,
+          julio: 350000,
+          agosto: 380000,
+          septiembre: 400000,
+          octubre: 420000,
+          noviembre: 450000,
+          diciembre: 480000,
+        },
+      },
+      clientes_destacados: [
+        {
+          nombre: 'Future Systems Co.',
+          total_gastado: 550000,
+          tasa_satisfaccion: 95,
+          ultima_compra: '2022-09-10',
+          vendedor_asignado: 'Ana Gómez',
+        },
+      ],
+    },
+    {
+      año: 2023,
+      resumen_general: {
+        total_sales: 6200000,
+        clientes_activos: 300,
+        clientes_inactivos: 60,
+        venta_promedio: 1050,
+        ventas_por_cliente: 20666.67,
+        tasa_satisfaccion: 89,
+        tendencia_ventas_mensuales: {
+          enero: 480000,
+          febrero: 460000,
+          marzo: 500000,
+          abril: 510000,
+          mayo: 540000,
+          junio: 580000,
+          julio: 600000,
+          agosto: 620000,
+          septiembre: 650000,
+          octubre: 680000,
+          noviembre: 700000,
+          diciembre: 750000,
+        },
+      },
+      clientes_destacados: [
+        {
+          nombre: 'Digital Horizon LLC',
+          total_gastado: 850000,
+          tasa_satisfaccion: 96,
+          ultima_compra: '2023-12-05',
+          vendedor_asignado: 'David Sánchez',
+        },
+      ],
+    },
+  ],
 };
 
-// Datos ajustados para el histograma (estimados visualmente desde la imagen)
+// Seleccionamos el año más reciente (2023) para las métricas generales y clientes destacados
+const latestYear = ventasData.ventas[ventasData.ventas.length - 1];
+const metrics = latestYear.resumen_general;
+const recentSales = latestYear.clientes_destacados;
+
+// Datos para el histograma: ventas mensuales del año más reciente (2023)
 const salesData = [
-  { month: 'Jan', sales: 10000 },
-  { month: 'Feb', sales: 12000 },
-  { month: 'Mar', sales: 15000 },
-  { month: 'Apr', sales: 18000 },
-  { month: 'May', sales: 20000 },
-  { month: 'Jun', sales: 25000 },
-  { month: 'Jul', sales: 30000 },
-  { month: 'Aug', sales: 35000 },
-  { month: 'Sep', sales: 40000 },
-  { month: 'Oct', sales: 50000 },
-  { month: 'Nov', sales: 60000 },
-  { month: 'Dec', sales: 75000 }, // Ajustado para que coincida con el pico visual
+  { month: 'Jan', sales: metrics.tendencia_ventas_mensuales.enero },
+  { month: 'Feb', sales: metrics.tendencia_ventas_mensuales.febrero },
+  { month: 'Mar', sales: metrics.tendencia_ventas_mensuales.marzo },
+  { month: 'Apr', sales: metrics.tendencia_ventas_mensuales.abril },
+  { month: 'May', sales: metrics.tendencia_ventas_mensuales.mayo },
+  { month: 'Jun', sales: metrics.tendencia_ventas_mensuales.junio },
+  { month: 'Jul', sales: metrics.tendencia_ventas_mensuales.julio },
+  { month: 'Aug', sales: metrics.tendencia_ventas_mensuales.agosto },
+  { month: 'Sep', sales: metrics.tendencia_ventas_mensuales.septiembre },
+  { month: 'Oct', sales: metrics.tendencia_ventas_mensuales.octubre },
+  { month: 'Nov', sales: metrics.tendencia_ventas_mensuales.noviembre },
+  { month: 'Dec', sales: metrics.tendencia_ventas_mensuales.diciembre },
 ];
 
-const recentSales = [
-  { name: 'Olivia Martin', email: 'olivia.martin@email.com', amount: 1999.0 },
-  { name: 'Jackson Lee', email: 'jackson.lee@email.com', amount: 39.0 },
-  {
-    name: 'Isabella Nguyen',
-    email: 'isabella.nguyen@email.com',
-    amount: 299.0,
-  },
-  { name: 'William Kim', email: 'william.kim@email.com', amount: 99.0 },
-  { name: 'Sofia Davis', email: 'sofia.davis@email.com', amount: 39.0 },
-];
+// Calculamos el total de clientes (activos + inactivos)
+const totalCustomers = metrics.clientes_activos + metrics.clientes_inactivos;
 ---
 
 <Layout title="CRM Dashboard">
@@ -52,38 +176,77 @@ const recentSales = [
       <div class="metric-header">
         <h3>Total Customers</h3>
         <span class="icon">👤</span>
-        <!-- Placeholder para el ícono -->
       </div>
-      <p class="value">{metrics.totalCustomers.toLocaleString()}</p>
-      <p class="growth">+{metrics.growth.totalCustomers}% from last month</p>
+      <p class="value">{totalCustomers.toLocaleString()}</p>
+      <p class="growth">
+        {
+          ventasData.ventas.length > 1
+            ? `+${
+                totalCustomers -
+                (ventasData.ventas[ventasData.ventas.length - 2].resumen_general
+                  .clientes_activos +
+                  ventasData.ventas[ventasData.ventas.length - 2]
+                    .resumen_general.clientes_inactivos)
+              } from last year`
+            : 'No data from last year'
+        }
+      </p>
     </div>
     <div class="metric-card">
       <div class="metric-header">
         <h3>Active Deals</h3>
         <span class="icon">📊</span>
-        <!-- Placeholder para el ícono -->
       </div>
-      <p class="value">{metrics.activeDeals}</p>
-      <p class="growth">+{metrics.growth.activeDeals}% from last month</p>
+      <p class="value">{metrics.clientes_activos}</p>
+      <p class="growth">
+        {
+          ventasData.ventas.length > 1
+            ? `+${
+                metrics.clientes_activos -
+                ventasData.ventas[ventasData.ventas.length - 2].resumen_general
+                  .clientes_activos
+              } from last year`
+            : 'No data from last year'
+        }
+      </p>
     </div>
     <div class="metric-card">
       <div class="metric-header">
         <h3>Revenue</h3>
         <span class="icon">💵</span>
-        <!-- Placeholder para el ícono -->
       </div>
-      <p class="value">${metrics.revenue.toLocaleString()}</p>
-      <p class="growth">+{metrics.growth.revenue}% from last month</p>
+      <p class="value">${(metrics.total_sales / 1000000).toLocaleString()}M</p>
+      <p class="growth">
+        {
+          ventasData.ventas.length > 1
+            ? `+${(
+                ((metrics.total_sales -
+                  ventasData.ventas[ventasData.ventas.length - 2]
+                    .resumen_general.total_sales) /
+                  ventasData.ventas[ventasData.ventas.length - 2]
+                    .resumen_general.total_sales) *
+                100
+              ).toFixed(1)}% from last year`
+            : 'No data from last year'
+        }
+      </p>
     </div>
     <div class="metric-card">
       <div class="metric-header">
         <h3>Customer Satisfaction</h3>
         <span class="icon">📈</span>
-        <!-- Placeholder para el ícono -->
       </div>
-      <p class="value">{metrics.customerSatisfaction}%</p>
+      <p class="value">{metrics.tasa_satisfaccion}%</p>
       <p class="growth">
-        +{metrics.growth.customerSatisfaction}% from last month
+        {
+          ventasData.ventas.length > 1
+            ? `+${
+                metrics.tasa_satisfaccion -
+                ventasData.ventas[ventasData.ventas.length - 2].resumen_general
+                  .tasa_satisfaccion
+              }% from last year`
+            : 'No data from last year'
+        }
       </p>
     </div>
   </div>
@@ -95,10 +258,11 @@ const recentSales = [
       <h2>Sales Overview</h2>
       <div class="histogram-container">
         <div class="y-axis">
-          <span>$80K</span>
-          <span>$60K</span>
-          <span>$40K</span>
-          <span>$20K</span>
+          <span>$750K</span>
+          <span>$600K</span>
+          <span>$450K</span>
+          <span>$300K</span>
+          <span>$150K</span>
           <span>$0K</span>
         </div>
         <div class="histogram">
@@ -106,7 +270,7 @@ const recentSales = [
             salesData.map((data) => (
               <div
                 class="bar"
-                style={`height: ${(data.sales / 80000) * 200}px;`}
+                style={`height: ${(data.sales / 750000) * 200}px;`}
               >
                 <span class="bar-label">{data.month}</span>
               </div>
@@ -119,7 +283,7 @@ const recentSales = [
     <!-- Recent Sales -->
     <div class="recent-sales">
       <h2>Recent Sales</h2>
-      <p>You made 265 sales this month.</p>
+      <p>You made {recentSales.length} notable sales this year.</p>
       <ul>
         {
           recentSales.map((sale) => (
@@ -127,11 +291,13 @@ const recentSales = [
               <div class="sale-info">
                 <div class="avatar" />
                 <div>
-                  <p class="name">{sale.name}</p>
-                  <p class="email">{sale.email}</p>
+                  <p class="name">{sale.nombre}</p>
+                  <p class="email">Last purchase: {sale.ultima_compra}</p>
                 </div>
               </div>
-              <p class="amount">+${sale.amount.toLocaleString()}</p>
+              <p class="amount">
+                +${(sale.total_gastado / 1000).toLocaleString()}K
+              </p>
             </li>
           ))
         }
