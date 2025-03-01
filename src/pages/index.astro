@@ -1,5 +1,7 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Analytics from '@/components/Analytics.astro';
+import Customer from '@/components/Customer.astro';
+import Overview from '@/components/Overview.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +9,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<Overview/>
+	<Customer/>
+	<Analytics/>
 </Layout>
