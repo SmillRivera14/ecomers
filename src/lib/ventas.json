@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "año": 2022,
+    "resumen_general": {
+      "total_clientes": 10,
+      "clientes_activos": 5,
+      "clientes_inactivos": 5,
+      "total_sales": 850000,
+      "venta_promedio": 1500,
+      "tasa_satisfaccion": 88
+    }
+  },
+  {
+    "id": 2,
+    "año": 2023,
+    "resumen_general": {
+      "total_clientes": 10,
+      "clientes_activos": 5,
+      "clientes_inactivos": 5,
+      "total_sales": 1250000,
+      "venta_promedio": 1800,
+      "tasa_satisfaccion": 90
+    }
+  }
+]
