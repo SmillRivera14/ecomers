@@ -5,6 +5,7 @@
       {
         "id": 1,
         "nombre": "TechCorp Solutions",
+        "empresa": "TechCorp",
         "estado": "Activo",
         "email": "compras@techcorp.com",
         "telefono": "+1 555 123 4567",
@@ -14,6 +15,7 @@
       {
         "id": 2,
         "nombre": "Digital Wave Inc",
+        "empresa": "Digital Wave",
         "estado": "Activo",
         "email": "ventas@digitalwave.com",
         "telefono": "+1 555 234 5678",
@@ -23,6 +25,7 @@
       {
         "id": 3,
         "nombre": "Future Systems Co",
+        "empresa": "Future Systems",
         "estado": "Activo",
         "email": "soporte@futuresystems.co",
         "telefono": "+1 555 345 6789",
@@ -32,6 +35,7 @@
       {
         "id": 4,
         "nombre": "Cloud Nexus Ltd",
+        "empresa": "Cloud Nexus",
         "estado": "Activo",
         "email": "info@cloudnexus.com",
         "telefono": "+1 555 456 7890",
@@ -41,6 +45,7 @@
       {
         "id": 5,
         "nombre": "Innovatech Global",
+        "empresa": "Innovatech",
         "estado": "Activo",
         "email": "contacto@innovatech.global",
         "telefono": "+1 555 567 8901",
@@ -55,6 +60,7 @@
       {
         "id": 6,
         "nombre": "Stellar Innovations",
+        "empresa": "Stellar",
         "estado": "Activo",
         "email": "compras@stellar.tech",
         "telefono": "+1 555 112 2334",
@@ -64,6 +70,7 @@
       {
         "id": 7,
         "nombre": "AI Dynamics Corp",
+        "empresa": "AI Dynamics",
         "estado": "Activo",
         "email": "soporte@aidynamics.com",
         "telefono": "+1 555 223 3445",
@@ -73,6 +80,7 @@
       {
         "id": 8,
         "nombre": "CyberNet Solutions",
+        "empresa": "CyberNet",
         "estado": "Activo",
         "email": "ventas@cybernet.sol",
         "telefono": "+1 555 334 4556",
@@ -82,6 +90,7 @@
       {
         "id": 9,
         "nombre": "NanoTech Industries",
+        "empresa": "NanoTech",
         "estado": "Activo",
         "email": "info@nanotech.ind",
         "telefono": "+1 555 445 5667",
@@ -91,6 +100,7 @@
       {
         "id": 10,
         "nombre": "BioDigital Systems",
+        "empresa": "BioDigital",
         "estado": "Activo",
         "email": "contacto@biodigital.sys",
         "telefono": "+1 555 556 6778",
