@@ -1,0 +1,19 @@
+---
+import Customer from "./Customer.astro"
+import Overview from "./Overview.astro"
+import SideMenuItem from "./SideMenuItem.astro" 
+
+---
+<nav class="flex flex-col flex-1 gap-2">
+  <div class="bg-zinc-900 rounded-lg p-2">
+    <ul>
+      <SideMenuItem href="../src/components/Customer.astro">
+        <span>Customer</span>
+      </SideMenuItem>
+
+      <SideMenuItem href=/Overview>
+        <span>Overview</span>
+      </SideMenuItem>
+    </ul>
+  </div>
+</nav>
