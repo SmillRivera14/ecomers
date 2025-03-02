@@ -1,0 +1,26 @@
+{
+  "ventas": [
+    {
+      "año": 2022,
+      "resumen_general": {
+        "total_sales": 1000000,
+        "tendencia_ventas_mensuales": {
+          "enero": 90000,
+          "febrero": 110000,
+          "marzo": 120000
+        }
+      }
+    },
+    {
+      "año": 2023,
+      "resumen_general": {
+        "total_sales": 1200000,
+        "tendencia_ventas_mensuales": {
+          "enero": 100000,
+          "febrero": 130000,
+          "marzo": 140000
+        }
+      }
+    }
+  ]
+}

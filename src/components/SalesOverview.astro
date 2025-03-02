@@ -1,0 +1,58 @@
+---
+import type {Ventas} from '@/lib/ventas'
+
+interface Props{
+  ventas: Ventas
+}
+
+const {ventas} = Astro.props
+const {id, resumen_general, clientes_destacados} = ventas
+
+const metrics = resumen_general;
+const recentSales = clientes_destacados;
+const salesData = [
+  { month: 'Jan', sales: metrics.tendencia_ventas_mensuales.enero },
+  { month: 'Feb', sales: metrics.tendencia_ventas_mensuales.febrero },
+  { month: 'Mar', sales: metrics.tendencia_ventas_mensuales.marzo },
+  { month: 'Apr', sales: metrics.tendencia_ventas_mensuales.abril },
+  { month: 'May', sales: metrics.tendencia_ventas_mensuales.mayo },
+  { month: 'Jun', sales: metrics.tendencia_ventas_mensuales.junio },
+  { month: 'Jul', sales: metrics.tendencia_ventas_mensuales.julio },
+  { month: 'Aug', sales: metrics.tendencia_ventas_mensuales.agosto },
+  { month: 'Sep', sales: metrics.tendencia_ventas_mensuales.septiembre },
+  { month: 'Oct', sales: metrics.tendencia_ventas_mensuales.octubre },
+  { month: 'Nov', sales: metrics.tendencia_ventas_mensuales.noviembre },
+  { month: 'Dec', sales: metrics.tendencia_ventas_mensuales.diciembre },
+];
+
+// Calculamos el total de clientes (activos + inactivos)
+const totalCustomers = metrics.clientes_activos + metrics.clientes_inactivos;
+---
+
+<div class="content">
+    <!-- Sales Overview (Histograma) -->
+    <div class="sales-overview">
+      <h2>Sales Overview</h2>
+      <div class="histogram-container">
+        <div class="y-axis">
+          <span>$750K</span>
+          <span>$600K</span>
+          <span>$450K</span>
+          <span>$300K</span>
+          <span>$150K</span>
+          <span>$0K</span>
+        </div>
+        <div class="histogram">
+          {
+            salesData.map((data) => (
+              <div
+                class="bar"
+                style={`height: ${(data.sales / 750000) * 200}px;`}
+              >
+                <span class="bar-label">{data.month}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
