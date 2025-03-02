@@ -15,6 +15,12 @@ interface ClientesData {
   año: number;
   clientes_destacados: Cliente[];
 }
+let dropdownOpen = false; // Estado inicial del dropdown
+
+// Define una propiedad para el componente
+const props = {
+  dropdownOpen: dropdownOpen,
+};
 
 // Convertir el JSON importado al tipo ClientesData para asegurar la tipificación correcta
 const clientesData: ClientesData[] = clientes;
@@ -29,28 +35,85 @@ const styles = {
   table: 'w-full border-collapse',
   th: 'border-b p-2 text-left font-semibold',
   td: 'border-b p-2',
-  button: 'bg-black text-white px-4 py-2 rounded hover:bg-gray-800',
+  button: 'bg-black text-white px-4 py-2 rounded hover:bg-gray-800 z-0',
   status: {
     activo: 'bg-green-500 text-white px-2 py-1 rounded',
     inactivo: 'bg-gray-500 text-white px-2 py-1 rounded',
     lead: 'bg-blue-500 text-white px-2 py-1 rounded'
-  } as Record<Cliente['estado'], string> // Tipar el objeto de estado con los valores posibles de "estado"
+  } as Record<Cliente['estado'], string>,
+    dropdown: "relative inline-block text-left",
+  dropdownButton:
+    "inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500 cursor-pointer",
+  dropdownMenu:
+    "absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50",
+  dropdownMenuSolid:
+    "absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-blue-500 ring-1 ring-black ring-opacity-5 focus:outline-none text-white z-50",
+  dropdownMenuItem: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
+  dropdownMenuItemSolid: "block px-4 py-2 text-sm text-white hover:bg-blue-600",
 };
 ---
 
 <div class={styles.container}>
   <h1 class={styles.header}>CRM Dashboard</h1>
 
-  {/* ... (resto del código del dashboard) ... */}
+    <!-- Navigation -->
+
+    <nav class={styles.nav}>
+  
+      <span class={styles.navItem}>Overview</span>
+  
+      <span class={styles.navItem}>Customers</span>
+  
+      <span class={styles.navItem}>Analytics</span>
+  
+    </nav>
+  
+  
+  
+    <div class="flex justify-between items-center mb-4">
+  
+      <div class={styles.search}>
+  
+        <input type="text" placeholder="Search customers..." class="border p-2 rounded w-full max-w-xs" />
+  
+      </div>
+  
+      <select class="border p-2 rounded">
+  
+        <option>All Statuses</option>
+  
+        <option>Activo</option>
+  
+        <option>Inactivo</option>
+  
+        <option>Lead</option>
+  
+      </select>
+  
+      <button class={styles.button}>+ Add Customer</button>
+  
+    </div>
 
   <table class={styles.table}>
     <thead>
-      {/* ... (encabezados de la tabla) ... */}
+      <tr>
+
+                <th class={styles.th}>Customer</th>
+        
+                <th class={styles.th}>Status</th>
+        
+                <th class={styles.th}>Last Contact <span class="text-gray-400">↑</span></th>
+        
+                <th class={styles.th}>Value</th>
+        
+                <th class={styles.th}>Actions</th>
+        
+              </tr>
     </thead>
     <tbody>
       {clientesData.map((data) =>
         data.clientes_destacados.map((cliente) => (
-          <tr> <!-- Eliminado el atributo `key` -->
+          <tr> 
             <td class={styles.td}>
               <div class="flex items-center space-x-2">
                 <div class="w-8 h-8 bg-gray-200 rounded-full"></div>
@@ -67,7 +130,20 @@ const styles = {
             </td>
             <td class={styles.td}>{cliente.last_contact}</td>
             <td class={styles.td}>${cliente.total_gastado.toLocaleString()}</td>
-            <td class={styles.td}>...</td>
+            <td class={styles.td}>
+              <details class={styles.dropdown}>
+                <summary class={styles.dropdownButton}>
+                  Actions
+                </summary>
+                <div class={styles.dropdownMenu}>
+                  <a href="#" class={styles.dropdownMenuItem}>View details</a>
+                  <a href="#" class={styles.dropdownMenuItem}>Add note</a>
+                  <a href="#" class={styles.dropdownMenuItem}>Schedule meeting</a>
+                  <a href="#" class={styles.dropdownMenuItem}>Edit customer</a>
+                  <a href="#" class={styles.dropdownMenuItem}>Delete customer</a>
+                </div>
+              </details>
+            </td>
           </tr>
         ))
       )}
