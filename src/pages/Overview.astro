@@ -252,12 +252,12 @@ const totalCustomers = metrics.clientes_activos + metrics.clientes_inactivos;
   </div>
 
   <!-- Sección de Sales Overview y Recent Sales -->
-  <div class="content">
-    <!-- Sales Overview (Histograma) -->
-    <div class="sales-overview">
-      <h2>Sales Overview</h2>
-      <div class="histogram-container">
-        <div class="y-axis">
+  <div class="flex flex-col lg:flex-row gap-5">
+    <!-- Sales Overview -->
+    <div class="bg-white p-5 rounded-lg shadow-md flex-1 h-full">
+      <h2 class="text-lg font-semibold mb-3">Sales Overview</h2>
+      <div class="relative flex">
+        <div class="flex flex-col justify-between h-48 text-xs text-gray-600 mr-2">
           <span>$750K</span>
           <span>$600K</span>
           <span>$450K</span>
@@ -265,42 +265,34 @@ const totalCustomers = metrics.clientes_activos + metrics.clientes_inactivos;
           <span>$150K</span>
           <span>$0K</span>
         </div>
-        <div class="histogram">
-          {
-            salesData.map((data) => (
-              <div
-                class="bar"
-                style={`height: ${(data.sales / 750000) * 200}px;`}
-              >
-                <span class="bar-label">{data.month}</span>
-              </div>
-            ))
-          }
+        <div class="grid grid-cols-12 gap-2 flex-1 h-48 items-end">
+          {salesData.map((data) => (
+            <div class="bg-black w-full rounded-t-lg relative" style={`height: ${(data.sales / 750000) * 100}%`}>
+              <span class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-xs text-gray-600">{data.month}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
 
     <!-- Recent Sales -->
-    <div class="recent-sales">
-      <h2>Recent Sales</h2>
-      <p>You made {recentSales.length} notable sales this year.</p>
-      <ul>
-        {
-          recentSales.map((sale) => (
-            <li>
-              <div class="sale-info">
-                <div class="avatar" />
-                <div>
-                  <p class="name">{sale.nombre}</p>
-                  <p class="email">Last purchase: {sale.ultima_compra}</p>
-                </div>
+    <div class="bg-white p-5 rounded-lg shadow-md flex-1 h-full overflow-y-auto">
+      <h2 class="text-lg font-semibold mb-3">Recent Sales</h2>
+      <p class="text-gray-600 text-sm mb-3">You made {recentSales.length} notable sales this year.</p>
+
+      <ul class="space-y-2">
+        {recentSales.map((sale) => (
+          <li class="flex justify-between items-center py-2 border-b border-gray-200">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
+              <div>
+                <p class="font-semibold text-sm">{sale.nombre}</p>
+                <p class="text-gray-500 text-xs">Last purchase: {sale.ultima_compra}</p>
               </div>
-              <p class="amount">
-                +${(sale.total_gastado / 1000).toLocaleString()}K
-              </p>
-            </li>
-          ))
-        }
+            </div>
+            <p class="text-black font-bold text-sm">+${(sale.total_gastado / 1000).toLocaleString()}K</p>
+          </li>
+        ))}
       </ul>
     </div>
   </div>

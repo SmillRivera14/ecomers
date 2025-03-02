@@ -1,13 +1,16 @@
 ---
-// src/components/SideMenuItem.astro
 interface Prop {
   href?: string;
+  currentPath?: string;
 }
-const { href } = Astro.props;
+
+const { href, currentPath } = Astro.props;
+const isActive = currentPath === href; // Comparamos solo las rutas
+
 ---
 
-<li class="flex"> <!-- Asegúrate de que cada <li> esté usando flex para ser parte de una fila -->
-  <a class="flex gap-4 text-zinc-400 hover:text-zinc-100 items-center py-3 px-5 font-medium transition duration-300" href={href}>
+<li>
+  <a class={`rounded-lg flex gap-4  hover:text-black items-center py-3 px-5 font-medium transition duration-300 ${isActive ? 'bg-[#FFFFFF] text-black' : 'text-zinc-400'}`} href={href}>
     <slot />
   </a>
 </li>

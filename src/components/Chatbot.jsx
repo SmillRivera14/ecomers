@@ -95,7 +95,7 @@ export const Chatbot = () => {
   };
 
   return (
-    <div className="p-4 w-full max-w-xl mx-auto bg-white rounded-lg shadow-lg">
+    <div className="p-5 w-full mx-auto bg-white rounded-lg shadow-lg">
       <div className="space-y-4">
         <div className="space-y-2">
           {chatHistory.map((message, index) => (

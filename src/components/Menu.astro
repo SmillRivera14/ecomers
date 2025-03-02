@@ -1,20 +1,20 @@
 ---
-// src/components/SideMenu.astro
 import SideMenuItem from "./SideMenuItem.astro";
+const currentPath = new URL(Astro.request.url).pathname; // Obtenemos solo la ruta (sin dominio, sin protocolo)
 ---
 
-<nav class="flex flex-row gap-4"> <!-- Cambio aquí para una fila con espacio entre los ítems -->
-  <div class="bg-zinc-900 rounded-lg p-2">
-    <ul class="flex flex-row gap-4"> <!-- Aquí estamos aplicando flex para alinearlos en fila -->
-      <SideMenuItem href="/Overview">
+<nav class="flex flex-row gap-4">
+  <div class="rounded-lg p-2">
+    <ul class="flex flex-row gap-4 bg-[#f4f4f5] rounded-lg py-1 px-1">
+      <SideMenuItem href="/Overview" currentPath={currentPath}>
         <span>Overview</span>
       </SideMenuItem>
 
-      <SideMenuItem href="./Customer">
+      <SideMenuItem href="/Customer" currentPath={currentPath}>
         <span>Customer</span>
       </SideMenuItem>
 
-      <SideMenuItem href="/Analytics">
+      <SideMenuItem href="/Analytics" currentPath={currentPath}>
         <span>Analytics</span>
       </SideMenuItem>
     </ul>
